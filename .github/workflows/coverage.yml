@@ -1,0 +1,42 @@
+---
+
+# This file sets up a GitHub Actions workflow called "Coverage" that checks
+# test coverage for a Go project and generates coverage batch.
+
+name: Coverage
+
+on:
+    workflow_call:
+
+env:
+  GOPATH: ${{ github.workspace }}/../go
+  GOVERSION: "1.20"
+
+jobs:
+  badge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    if: contains(github.ref, 'main')
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "${{ env.GOVERSION }}"
+      - name: Generate test coverage
+        run: go test ./... -coverprofile=./coverage.out
+      - name: Check test coverage
+        id: coverage
+        uses: vladopajic/go-test-coverage@v2
+        with:
+          config: ./.testcoverage.yml
+      - name: make coverage badge
+        uses: action-badges/core@0.2.2
+        with:
+          label: coverage
+          message: ${{ steps.coverage.outputs.badge-text }}
+          message-color: ${{ steps.coverage.outputs.badge-color }}
+          file-name: coverage.svg
+          badge-branch: badges
+          github-token: "${{ secrets.GITHUB_TOKEN }}"

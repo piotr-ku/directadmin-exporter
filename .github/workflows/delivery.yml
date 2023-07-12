@@ -41,7 +41,7 @@ jobs:
           # create output directory
           mkdir -p ${{ env.OUTPUT_DIR }}/${{ env.VERSION_NAME }}
           # build
-          GOOS=${{ matrix.platform }} GOARCH=${{ matrix.arch }} \
+          GOOS=${{ matrix.platform }} GOARCH=${{ matrix.arch }} CGO_ENABLED=0 \
             go build -o ${{ env.OUTPUT_DIR }}/${{ env.VERSION_NAME }}/directadmin-exporter main.go
           # add LICENSE and README.md files
           cp {LICENSE,README.md} ${{ env.OUTPUT_DIR }}/${{ env.VERSION_NAME }}

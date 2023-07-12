@@ -2,6 +2,8 @@
 
 This is a simple exporter for monitoring DirectAdmin using Prometheus. It retrieves metrics from the DirectAdmin API and exposes them in a format that can be scraped by Prometheus.
 
+![Continous Integration status](https://github.com/piotr-ku/directadmin-exporter/actions/workflows/integration.yml/badge.svg?branch=main) [![Go Report Card](https://goreportcard.com/badge/github.com/piotr-ku/directadmin-exporter)](https://goreportcard.com/report/github.com/piotr-ku/directadmin-exporter) ![coverage](https://raw.githubusercontent.com/piotr-ku/directadmin-exporter/badges/.badges/main/coverage.svg)
+
 ## Installation
 
 To install and set up the DirectAdmin Exporter, follow these steps:

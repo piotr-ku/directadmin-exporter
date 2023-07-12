@@ -1,0 +1,45 @@
+---
+
+# This file is a workflow configuration file for testing a Go project using
+# GitHub Actions.
+
+name: Test
+
+on:
+    workflow_call:
+
+env:
+  GOPATH: ${{ github.workspace }}/../go
+  GOVERSION: "1.20"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "${{ env.GOVERSION }}"
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+          skip-cache: true
+      - name: Install dependencies
+        run: go get -t -v ./...
+      - name: Build
+        run: go build -v ./...
+      - name: Test
+        run: go test -cover ./...
+      - name: Install govulncheck
+        run: go install golang.org/x/vuln/cmd/govulncheck@latest
+      - name: Govulncheck
+        run: ${{ env.GOPATH }}/bin/govulncheck ./...
+      - name: Generate test coverage
+        run: go test ./... -coverprofile=./coverage.out
+      - name: Check test coverage
+        id: coverage
+        uses: vladopajic/go-test-coverage@v2
+        with:
+          config: ./.testcoverage.yml

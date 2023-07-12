@@ -1,0 +1,24 @@
+---
+
+# This file is a workflow configuration file for an integration workflow using
+# GitHub Actions.
+
+name: Integration
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+  coverage:
+    if: contains(github.ref, 'main')
+    needs: test
+    uses: ./.github/workflows/coverage.yml
+    permissions:
+      contents: write

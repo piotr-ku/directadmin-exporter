@@ -1,0 +1,97 @@
+{
+	"allocated":
+	{
+		"bandwidth": "unlimited",
+		"domainptr": "unlimited",
+		"ftp": "unlimited",
+		"inode": "unlimited",
+		"mysql": "unlimited",
+		"nemailf": "unlimited",
+		"nemailml": "unlimited",
+		"nemailr": "unlimited",
+		"nemails": "unlimited",
+		"nsubdomains": "unlimited",
+		"quota": "845790",
+		"vdomains": "unlimited"
+	},
+	"bandwidth": "85541",
+	"db_quota": "9677621435",
+	"device": "eth0:1",
+	"disk":
+	{
+		"info":
+		{
+			"columns":
+			{
+				"Filesystem": "1",
+				"1024-blocks": "2",
+				"Used": "3",
+				"Available": "4",
+				"Capacity": "5",
+				"Mounted on": "6"
+			},
+			"current_page": "1",
+			"ipp": "50",
+			"rows": "0",
+			"total_pages": "0"
+		}
+	},
+	"disk1": "devtmpfs:7922696:0:7922696:0%:/dev",
+	"disk2": "tmpfs:7941172:0:7941172:0%:/dev/shm",
+	"disk3": "tmpfs:7941172:795376:7145796:11%:/run",
+	"disk4": "tmpfs:7941172:0:7941172:0%:/sys/fs/cgroup",
+	"disk5": "/dev/sda1:78600680:42991948:32362524:58%:/",
+	"disk6": "/dev/sdc:46326820:24944632:19352580:57%:/volume",
+	"disk7": "/dev/sdb:655261800:589609332:38877088:94%:/home",
+	"disk8": "/dev/sda15:65390:2172:63218:4%:/boot/efi",
+	"disk9": "tmpfs:1588232:0:1588232:0%:/run/user/0",
+	"domainptr": "34",
+	"email_deliveries": "10917",
+	"email_deliveries_incoming": "7974",
+	"email_deliveries_outgoing": "2943",
+	"email_quota": "0",
+	"ftp": "326",
+	"inode": "6041645",
+	"last_tally": "1688682917",
+	"loadavg":
+	{
+		"fifteen": "2.05",
+		"five": "2.27",
+		"one": "2.55"
+	},
+	"mysql": "981",
+	"nemailf": "114",
+	"nemailml": "2",
+	"nemailr": "3",
+	"nemails": "922",
+	"nresellers": "1",
+	"nsubdomains": "159",
+	"nusers": "211",
+	"other_quota": "0",
+	"quota": "552070",
+	"usage":
+	{
+		"bandwidth": "85541",
+		"db_quota": "9677621435",
+		"domainptr": "34",
+		"email_deliveries": "10917",
+		"email_deliveries_incoming": "7974",
+		"email_deliveries_outgoing": "2943",
+		"email_quota": "0",
+		"ftp": "326",
+		"inode": "6041645",
+		"last_tally": "1688682917",
+		"mysql": "981",
+		"nemailf": "114",
+		"nemailml": "2",
+		"nemailr": "3",
+		"nemails": "922",
+		"nresellers": "1",
+		"nsubdomains": "159",
+		"nusers": "211",
+		"other_quota": "0",
+		"quota": "552070",
+		"vdomains": "1023"
+	},
+	"vdomains": "1023"
+}

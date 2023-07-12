@@ -1,0 +1,80 @@
+---
+
+# This file is a workflow configuration file for delivery a Go project using
+# GitHub Actions.
+
+name: Delivery
+
+on:
+  push:
+    tags:
+    - "v*"
+
+env:
+  GOPATH: ${{ github.workspace }}/go
+  GOVERSION: "1.20"
+  ARTIFACTS_DIR: ${{ github.workspace }}/artifacts
+  OUTPUT_DIR: ${{ github.workspace }}/output
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform:
+          - linux
+        arch:
+          - amd64
+    env:
+      VERSION_NAME: directadmin-exporter.${{ github.ref_name }}.${{ matrix.platform }}.${{ matrix.arch }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "${{ env.GOVERSION }}"
+      - name: Build
+        run: |
+          # create output directory
+          mkdir -p ${{ env.OUTPUT_DIR }}/${{ env.VERSION_NAME }}
+          # build
+          GOOS=${{ matrix.platform }} GOARCH=${{ matrix.arch }} \
+            go build -o ${{ env.OUTPUT_DIR }}/${{ env.VERSION_NAME }}/directadmin-exporter main.go
+          # add LICENSE and README.md files
+          cp {LICENSE,README.md} ${{ env.OUTPUT_DIR }}/${{ env.VERSION_NAME }}
+          fi
+      - name: Archive
+        working-directory: ${{ env.OUTPUT_DIR }}
+        run: |
+          mkdir -p ${{ env.ARTIFACTS_DIR }}
+          tar -czvf \
+            ${{ env.ARTIFACTS_DIR }}/${{ env.VERSION_NAME }}.tar.gz \
+            ./${{ env.VERSION_NAME }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: release-archives
+          path: ${{ env.ARTIFACTS_DIR }}/${{ env.VERSION_NAME }}.tar.gz
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - uses: actions/download-artifact@v2
+        with:
+          name: release-archives
+          path: ${{ env.ARTIFACTS_DIR }}
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            --generate-notes \
+            --verify-tag \
+            --draft \
+            ${{ env.ARTIFACTS_DIR }}/*.tar.gz

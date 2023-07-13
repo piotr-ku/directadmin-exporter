@@ -16,6 +16,8 @@ func main() {
 	port := flag.Int("port", 8080, "Port number for the HTTP server")
 	ipAddress := flag.String("ip", "", "IP address for the HTTP server")
 	envFile := flag.String("config", "", "Configuration file path")
+	interval := flag.Duration("interval", 10*time.Second,
+		"Interval between API requests")
 	flag.Parse()
 
 	// Get API configuration
@@ -30,7 +32,7 @@ func main() {
 	go func() {
 		for {
 			exporter.RecordMetrics(config)
-			time.Sleep(2 * time.Second)
+			time.Sleep(*interval)
 		}
 	}()
 

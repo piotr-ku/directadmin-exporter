@@ -46,6 +46,7 @@ Replace the placeholders with the appropriate values:
 - `<port-number>`: Port number for the HTTP server (default: 8080)
 - `<ip-address>`: IP address for the HTTP server (default: 127.0.0.1)
 - `<config-file-path>`: Path to the configuration file
+- `<interval>`: Interval between API requests (default: 10s)
 
 ## Configuration
 

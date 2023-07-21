@@ -78,6 +78,10 @@ The DirectAdmin Exporter collects various metrics exposed by the DirectAdmin ser
 
 The metrics endpoint is available at `/metrics` on the HTTP server.
 
+## Grafana Dashboard
+
+A Grafana dashboard for visualizing the metrics collected by the DirectAdmin Exporter is available in the `grafana` directory. Import this dashboard into your Grafana instance to monitor and analyze the DirectAdmin metrics conveniently.
+
 ## Contributing
 
 Contributions to the DirectAdmin Exporter project are welcome. To contribute, please follow these guidelines:

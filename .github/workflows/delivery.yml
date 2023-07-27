@@ -29,7 +29,7 @@ jobs:
         arch:
           - amd64
     env:
-      VERSION_NAME: directadmin-exporter.${{ github.ref_name }}.${{ matrix.platform }}.${{ matrix.arch }}
+      VERSION_NAME: directadmin_exporter-${{ github.ref_name }}.${{ matrix.arch }}-${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Go
@@ -42,7 +42,7 @@ jobs:
           mkdir -p ${{ env.OUTPUT_DIR }}/${{ env.VERSION_NAME }}
           # build
           GOOS=${{ matrix.platform }} GOARCH=${{ matrix.arch }} CGO_ENABLED=0 \
-            go build -o ${{ env.OUTPUT_DIR }}/${{ env.VERSION_NAME }}/directadmin-exporter main.go
+            go build -o ${{ env.OUTPUT_DIR }}/${{ env.VERSION_NAME }}/directadmin_exporter main.go
           # add LICENSE and README.md files
           cp {LICENSE,README.md} ${{ env.OUTPUT_DIR }}/${{ env.VERSION_NAME }}
       - name: Archive

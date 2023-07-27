@@ -29,7 +29,7 @@ jobs:
         arch:
           - amd64
     env:
-      VERSION_NAME: directadmin_exporter-${{ github.ref_name }}.${{ matrix.arch }}-${{ matrix.platform }}
+      VERSION_NAME: directadmin_exporter-${{ github.ref_name }}.${{ matrix.platform }}-${{ matrix.arch }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Go

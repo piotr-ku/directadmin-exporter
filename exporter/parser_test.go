@@ -8,7 +8,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// TestParseResponse tests the ParseResponse function.
+// TestParseResponse is a unit test for the ParseResponse function.
+//
+// It activates the HTTP mock, configures the response, registers
+// the response function, gets the metrics using the GetMetrics function.
+// The function verifies that the metrics fetched from the API match
+// the expected values.
 func TestParseResponse(t *testing.T) {
 	// Define expected output
 	var expected = map[string]interface{}{

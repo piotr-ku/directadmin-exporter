@@ -9,7 +9,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// TestGetMetrics tests the GetMetrics function.
+// TestGetMetrics is a unit test for the GetMetrics function.
+//
+// It activates the HTTP mock, configures the response, registers
+// the response function, gets the metrics using the GetMetrics function.
+// The function verifies that the metrics fetched from the API match
+// the expected values.
 func TestGetMetrics(t *testing.T) {
 	// Activate HTTP mock
 	httpmock.Activate()
@@ -47,8 +52,13 @@ func TestGetMetrics(t *testing.T) {
 	}
 }
 
-// TestGetMetricsAPIError tests the GetMetrics function when
-// an API error occurs.
+// TestGetMetricsAPIError is a unit test for the GetMetrics function when
+// the API returns an error.
+//
+// It activates the HTTP mock, configures the response, registers
+// the response function, gets the metrics using the GetMetrics function.
+// The function verifies that the metrics fetched from the API match
+// the expected values.
 func TestGetMetricsAPIError(t *testing.T) {
 	// Activate HTTP mock
 	httpmock.Activate()
@@ -73,7 +83,12 @@ func TestGetMetricsAPIError(t *testing.T) {
 	assert.Equal(t, map[string]float64{}, metrics)
 }
 
-// TestRecordMetrics tests the RecordMetrics function.
+// TestRecordMetrics is a unit test for the RecordMetrics function.
+//
+// It activates the HTTP mock, configures the response, registers
+// the response function, gets the metrics using the GetMetrics function.
+// The function verifies that the metrics fetched from the API match
+// the expected values.
 func TestRecordMetrics(t *testing.T) {
 	// Clean environment after test
 	defer func() {
@@ -115,8 +130,13 @@ func TestRecordMetrics(t *testing.T) {
 	}
 }
 
-// TestRecordMetricsAPIError tests the RecordMetrics function when
-// an API error occurs.
+// TestRecordMetricsAPIError is a unit test for the RecordMetrics function
+// when the API returns an error.
+//
+// It activates the HTTP mock, configures the response, registers
+// the response function, gets the metrics using the GetMetrics function,
+// and defines the tests. The function verifies that the metrics fetched
+// from the API match the expected values.
 func TestRecordMetricsAPIError(t *testing.T) {
 	// Clean environment after test
 	defer func() {

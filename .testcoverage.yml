@@ -19,3 +19,10 @@ threshold:
   # (optional; default 0)
   # The minimum total coverage project should have
   total: 100
+
+# Holds regexp rules which will exclude matched files or packages
+# from coverage statistics
+exclude:
+  # Exclude files or packages matching their paths
+  paths:
+    - ^main\.go$    # excludes main.go

@@ -232,7 +232,7 @@ type APIResponseTest struct {
 func responseFunction(test APIResponseTest) func(*http.Request) (*http.Response,
 	error) {
 	// Prepare response
-	return func(req *http.Request) (*http.Response, error) {
+	return func(*http.Request) (*http.Response, error) {
 		if test.Status >= 400 {
 			return httpmock.NewStringResponse(test.Status,
 				""), fmt.Errorf("Error %d", test.Status)
@@ -305,7 +305,7 @@ func TestAPIRequest(t *testing.T) {
 // ioutil.ReadAll returns an error.
 func TestAPIRequestIOUtilReadAllError(t *testing.T) {
 	// mock ioutil.ReadAll()
-	mockIOReadAll = func(r io.Reader) ([]byte, error) {
+	mockIOReadAll = func(io.Reader) ([]byte, error) {
 		return []byte{}, errors.New("faked ioutil.ReadAll() error")
 	}
 	defer func() {

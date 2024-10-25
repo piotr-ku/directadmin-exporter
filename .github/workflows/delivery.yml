@@ -31,9 +31,9 @@ jobs:
     env:
       VERSION_NAME: directadmin_exporter-${{ github.ref_name }}.${{ matrix.platform }}-${{ matrix.arch }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v5
         with:
           go-version: "${{ env.GOVERSION }}"
       - name: Build
@@ -52,7 +52,7 @@ jobs:
           tar -czvf \
             ${{ env.ARTIFACTS_DIR }}/${{ env.VERSION_NAME }}.tar.gz \
             ./${{ env.VERSION_NAME }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: release-archives
           path: ${{ env.ARTIFACTS_DIR }}/${{ env.VERSION_NAME }}.tar.gz
@@ -63,8 +63,8 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-      - uses: actions/download-artifact@v2
+        uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
         with:
           name: release-archives
           path: ${{ env.ARTIFACTS_DIR }}

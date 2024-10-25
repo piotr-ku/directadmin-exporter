@@ -10,7 +10,7 @@ on:
 
 env:
   GOPATH: ${{ github.workspace }}/../go
-  GOVERSION: "1.20"
+  GOVERSION: "1.23"
 
 jobs:
   test:

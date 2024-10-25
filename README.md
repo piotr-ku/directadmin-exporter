@@ -32,7 +32,7 @@ To install and set up the DirectAdmin Exporter, follow these steps:
 
 Before running the DirectAdmin Exporter, make sure you have the following prerequisites:
 
-- Go (version 1.20 or later)
+- Go (version 1.23 or later)
 - DirectAdmin API credentials
 
 To run the application, use the following command:

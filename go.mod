@@ -1,6 +1,6 @@
 module github.com/piotr-ku/directadmin-exporter
 
-go 1.20
+go 1.23
 
 require (
 	github.com/go-playground/validator/v10 v10.19.0

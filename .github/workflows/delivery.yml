@@ -12,7 +12,7 @@ on:
 
 env:
   GOPATH: ${{ github.workspace }}/go
-  GOVERSION: "1.20"
+  GOVERSION: "1.23"
   ARTIFACTS_DIR: ${{ github.workspace }}/artifacts
   OUTPUT_DIR: ${{ github.workspace }}/output
 

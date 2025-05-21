@@ -18,8 +18,12 @@ env:
 
 jobs:
   test:
+    permissions:
+      contents: read
     uses: ./.github/workflows/test.yml
   build:
+    permissions:
+      contents: read
     needs: test
     runs-on: ubuntu-latest
     strategy:

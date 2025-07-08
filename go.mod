@@ -3,7 +3,7 @@ module github.com/piotr-ku/directadmin-exporter
 go 1.23.0
 
 require (
-	github.com/go-playground/validator/v10 v10.26.0
+	github.com/go-playground/validator/v10 v10.27.0
 	github.com/jarcoal/httpmock v1.4.0
 	github.com/joho/godotenv v1.5.1
 	github.com/prometheus/client_golang v1.22.0
